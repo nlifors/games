@@ -1,0 +1,370 @@
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f4f6fb;
+  --text: #0e1116;
+  --text-dim: #5a6473;
+  --line: rgba(14, 17, 22, 0.1);
+  --accent: #2f6bff;
+  --max: 1120px;
+  --pad: clamp(20px, 5vw, 64px);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px var(--pad);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+
+.brand-mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #16c79a, #2f6bff);
+  box-shadow: 0 6px 16px -6px rgba(47, 107, 255, 0.7);
+}
+
+.site-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.nav-link {
+  font-size: 14px;
+  color: var(--text-dim);
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-link:hover { color: var(--text); background: var(--bg-soft); }
+
+/* ---------- hero ---------- */
+.hero {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(72px, 16vh, 180px) var(--pad) clamp(60px, 12vh, 140px);
+  text-align: center;
+}
+
+.hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: 0 0 20px;
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(40px, 8vw, 88px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+  background: linear-gradient(180deg, #0e1116, #424b5a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-sub {
+  max-width: 560px;
+  margin: 0 auto 40px;
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: var(--text-dim);
+}
+
+.hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  font-weight: 500;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.hero-scroll:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.25); }
+.hero-arrow { animation: bob 1.8s ease-in-out infinite; }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* ---------- game sections ---------- */
+.game {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(60px, 11vh, 130px) 0;
+  /* high-contrast text on the (light) colour bands */
+  --text: #0a0c10;
+  --text-dim: rgba(8, 10, 14, 0.78);
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.game.is-visible { opacity: 1; transform: none; }
+
+/* faint tone-on-tone watermark — only on games that carry a pattern class */
+.game::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  opacity: 0.07;
+  pointer-events: none;
+}
+.game--dark::before { opacity: 0.05; }
+
+.pat-hex::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1'%3E%3Cpath d='M28 66L0 50V16L28 0L56 16V50L28 66L28 100'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 130px 232px;
+}
+.pat-diagonal::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Cpath d='M-1 1 L1 -1 M0 22 L22 0 M21 23 L23 21' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 26px 26px;
+}
+.pat-diamond::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M24 0 L48 24 L24 48 L0 24 Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 54px 54px;
+}
+.pat-dots::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='15' cy='15' r='1.6' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-size: 34px 34px;
+}
+
+/* dark colour bands flip text + pills to light */
+.game--dark {
+  --text: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.82);
+}
+
+.game-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: clamp(32px, 6vw, 88px);
+}
+.game--reverse .game-art { order: 2; }
+
+.game-art {
+  position: relative;
+}
+.game-art svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- diorama animations (trigger on scroll-in) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* transform-based loops need the element's own box as the origin */
+  .anim-pulse,
+  .anim-drift-a,
+  .anim-drift-b,
+  .anim-bob,
+  .diorama {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  /* one-shot entrance pop, then continuous ambient motion, once visible */
+  /* one-shot entrance pop, then ambient loops — negative delays start each
+     element mid-cycle so nothing begins in sync */
+  .game.is-visible .diorama { animation: dioramaPop 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .game.is-visible .anim-pulse { animation: cellPulse 3.2s ease-in-out -0.6s infinite; }
+  .game.is-visible .anim-bob { animation: bobY 3s ease-in-out -1.1s infinite; }
+  .game.is-visible .anim-drift-a { animation: driftA 5.5s ease-in-out -2s infinite; }
+  .game.is-visible .anim-drift-b { animation: driftB 7s ease-in-out -3.3s infinite; }
+  .game.is-visible .anim-flow { animation: dashFlow 0.85s linear infinite; }
+
+  /* single-element twinkle (e.g. the crystal) */
+  .game.is-visible .anim-twinkle { animation: twinkle 2.6s ease-in-out -0.9s infinite; }
+
+  /* grouped twinkle — every dot shimmers on its own offset */
+  .game.is-visible .anim-twinkle-group > circle { animation: twinkle 2.6s ease-in-out infinite; }
+  .anim-twinkle-group > circle:nth-child(1) { animation-delay: -0.1s; }
+  .anim-twinkle-group > circle:nth-child(2) { animation-delay: -1.4s; }
+  .anim-twinkle-group > circle:nth-child(3) { animation-delay: -0.6s; }
+  .anim-twinkle-group > circle:nth-child(4) { animation-delay: -2.1s; }
+  .anim-twinkle-group > circle:nth-child(5) { animation-delay: -1.0s; }
+  .anim-twinkle-group > circle:nth-child(6) { animation-delay: -2.4s; }
+  .anim-twinkle-group > circle:nth-child(7) { animation-delay: -0.3s; }
+  .anim-twinkle-group > circle:nth-child(8) { animation-delay: -1.8s; }
+}
+
+@keyframes dioramaPop {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes cellPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.065); } }
+@keyframes bobY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-11px); } }
+@keyframes driftA { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(10px, -8px); } }
+@keyframes driftB { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-11px, 9px); } }
+@keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.28; } }
+@keyframes dashFlow { to { stroke-dashoffset: -12; } }
+
+.game-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+.game-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 10px 0 8px;
+  color: var(--text);
+}
+
+.game-tagline {
+  font-size: clamp(17px, 2.4vw, 22px);
+  color: var(--accent);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+
+.game-blurb {
+  color: var(--text-dim);
+  font-size: 16px;
+  margin: 0 0 22px;
+  max-width: 46ch;
+}
+
+.game-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0 0 30px;
+}
+.game-tags li {
+  font-size: 13px;
+  color: var(--text);
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.game--dark .game-tags li {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.game-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--accent);
+  box-shadow: 0 12px 30px -12px var(--accent);
+  transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
+}
+.game-play:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.game-play::after { content: '→'; transition: transform 0.18s; }
+.game-play:hover::after { transform: translateX(3px); }
+
+/* unreachable server — shaded, non-interactive, relabelled "Server Offline" */
+.game-play.is-offline {
+  background: rgba(0, 0, 0, 0.16);
+  color: rgba(0, 0, 0, 0.55);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+}
+.game--dark .game-play.is-offline {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.6);
+}
+.game-play.is-offline::after { content: '○'; transform: none; opacity: 0.7; }
+
+/* non-web game (desktop / Godot) — outlined info pill, no launch link */
+.game-play--static {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid currentColor;
+  box-shadow: none;
+  cursor: default;
+  opacity: 0.85;
+}
+.game-play--static:hover { transform: none; filter: none; }
+.game-play--static::after { content: ''; }
+
+/* ---------- footer ---------- */
+.site-footer {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 64px var(--pad) 80px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  color: var(--text-dim);
+}
+.footer-line { font-size: 16px; margin: 0 0 8px; }
+.footer-line code {
+  font-family: 'Space Grotesk', monospace;
+  color: var(--text);
+}
+.footer-meta { font-size: 13px; margin: 0; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 760px) {
+  .game {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .game--reverse .game-art { order: 0; }
+  .site-nav { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .game { opacity: 1; transform: none; transition: none; }
+  .hero-arrow { animation: none; }
+}

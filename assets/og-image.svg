@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="'Space Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#15101f"/>
+      <stop offset="1" stop-color="#241a3a"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16c79a"/>
+      <stop offset="1" stop-color="#2f6bff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- brand mark -->
+  <rect x="90" y="120" width="64" height="64" rx="16" fill="url(#mark)"/>
+  <path d="M122 169 C 109 156 106 148 111 143 C 115 140 120 142 122 146 C 124 142 129 140 133 143 C 138 148 135 156 122 169 Z" fill="#fff"/>
+
+  <!-- wordmark + taglines -->
+  <text x="88" y="318" font-size="132" font-weight="700" fill="#ffffff" letter-spacing="-2">GAMES</text>
+  <text x="92" y="378" font-size="28" font-weight="500" fill="#c7c7e0">Original browser games — built with heart.</text>
+  <text x="92" y="424" font-size="23" font-weight="500" fill="#8f8fb0">Agar.io 2 · Space Pitfall · Plushy Quest · Digital Circus</text>
+
+  <!-- four game-shape chips (circle / diamond / heart / hexagon) -->
+  <g>
+    <rect x="700" y="130" width="190" height="190" rx="28" fill="#ff9ec1"/>
+    <circle cx="795" cy="225" r="52" fill="#ffffff"/>
+
+    <rect x="930" y="130" width="190" height="190" rx="28" fill="#5ec6f2"/>
+    <path d="M1025 173 L1077 225 L1025 277 L973 225 Z" fill="#ffffff"/>
+
+    <rect x="700" y="360" width="190" height="190" rx="28" fill="#0e1116"/>
+    <path d="M795 489 C 768 471 761 452 773 441 C 781 434 790 438 795 446 C 800 438 809 434 817 441 C 829 452 822 471 795 489 Z" fill="#ffffff"/>
+
+    <rect x="930" y="360" width="190" height="190" rx="28" fill="#ffd44d"/>
+    <path d="M973 455 L999 409 L1051 409 L1077 455 L1051 501 L999 501 Z" fill="#2a2350"/>
+  </g>
+</svg>
